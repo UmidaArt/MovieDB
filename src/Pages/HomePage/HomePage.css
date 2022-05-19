@@ -1,0 +1,30 @@
+.mainBlock {
+    width: 100%;
+    height: 300px;
+}
+.welcome {
+    background-image:url("../../assets/images/mainImg.jpeg");
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
+    height: 300px;
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+}
+.welcomeBox {
+    width: 100%;
+    position: relative;
+    height: 300px;
+}
+.welcomeText {
+    position: absolute;
+    top: 19%;
+}
+.welcomeMainTitle {
+    font-size: 35px;
+}
+.welcomeTitle {
+    font-size: 25px;
+}

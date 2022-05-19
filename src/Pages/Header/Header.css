@@ -1,0 +1,14 @@
+.header {
+    background-color: rgb(3, 37, 65);
+}
+.headerItem {
+    padding: 22px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.navList li{
+   list-style: none;
+    display: inline-block;
+    margin-right: 30px;
+}
