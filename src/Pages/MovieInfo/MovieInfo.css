@@ -1,0 +1,19 @@
+.infoBlock {
+    padding-top: 50px;
+}
+.movieInfo {
+    display: flex;
+}
+.infoBox {
+    padding: 10px 40px;
+}
+.card-character {
+    color: dimgray;
+}
+.filmInfoImg img {
+    border-radius: 8px;
+}
+.cardImg img{
+    width: 100%;
+    border-radius: 7px;
+}

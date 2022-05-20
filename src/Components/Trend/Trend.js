@@ -11,24 +11,34 @@ const Trend = () => {
         axios('https://api.themoviedb.org/3/trending/all/day?api_key=7b0978a92c067b08001617c99e5b9879')
             .then((res) => setTrendMovies(res.data.results))
     },[])
+
     return (
-        <div className="container">
-            <div className="trend">
-                <h1>В тренде</h1>
-                <div className="row">
-                    {
-                        trendMovies.map((movie) => (
-                            <div className="col-2" key={movie.id}>
-                                <Link to={`/movie/${movie.id}`}>
-                                    <div className="colItem">
-                                        <img src={`https://www.themoviedb.org/t/p/w440_and_h660_face/${movie.poster_path}`}
-                                             width="150px"/>
-                                        <h4>{movie.original_title}</h4>
+        <div className="trend">
+            <div className="trendBlock">
+                <div className="container">
+                    <h1>В тренде</h1>
+                    <div className="scroller">
+                        {
+                            trendMovies.map((item) => (
+                                <div className="movie-card" key={item.id}>
+                                    <div className="card-img">
+                                        <Link to={`/movie/${item.id}`}>
+                                            <img src={`https://www.themoviedb.org/t/p/w440_and_h660_face${item.poster_path}`} alt="img" width="150px"/>
+                                        </Link>
+                                        <div className="consensus">
+                                            23
+                                        </div>
                                     </div>
-                                </Link>
-                            </div>
-                        ))
-                    }
+                                    <div className="card-content">
+                                        <Link to={`/movie/${item.id}`}>
+                                            <h5 className="card-title">{item.original_title}</h5>
+                                        </Link>
+                                        {/*<span className="card-year">{formatDate(item.release_date)}</span>*/}
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
                 </div>
             </div>
         </div>

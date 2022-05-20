@@ -21,10 +21,45 @@
 .welcomeText {
     position: absolute;
     top: 19%;
+    width: 100%;
 }
 .welcomeMainTitle {
-    font-size: 35px;
+    font-size: 50px;
 }
 .welcomeTitle {
-    font-size: 25px;
+    font-size: 30px;
+    margin-bottom: 50px;
+}
+form {
+    margin-top: 30px;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+.mainInput {
+    width: 100%;
+    height: 46px;
+    line-height: 46px;
+    font-size: 1.1em;
+    color: rgba(0,0,0,0.5);
+    border: none;
+    border-radius: 30px;
+    padding: 10px 20px;
+}
+.mainBtn {
+    display: inline-flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    height: 46px;
+    width: 100px;
+    padding: 10px 26px;
+    border: none;
+    background: rgb(32, 202, 196);
+    border-radius: 30px;
+    position: absolute;
+    top: 0;
+    right: -1px;
+    color: #fff;
+    cursor: pointer;
 }

@@ -1,6 +1,7 @@
-.trend {
-    margin-bottom: 40px;
-}
-.trend img {
-    border-radius: 10px;
+.trendBlock {
+    width: 95%;
+    margin: 0 auto;
+    background-image: url("../../assets/images/bg.svg");
+    background-position: 50% 150px;
+    background-repeat: no-repeat;
 }

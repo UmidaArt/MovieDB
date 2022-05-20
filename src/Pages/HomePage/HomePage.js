@@ -1,6 +1,7 @@
 import "./HomePage.css"
 import Popular from "../../Components/Popular";
 import Trend from "../../Components/Trend";
+import {useState} from "react";
 
 const HomePage = () => {
 
@@ -12,10 +13,10 @@ const HomePage = () => {
                         <div className="welcomeBox">
                             <div className="welcomeText">
                                 <h1 className="welcomeMainTitle">Добро пожаловать.</h1>
-                                <p className="welcomeTitle">Миллионы фильмов, сериалов и людей. Исследуйте сейчас.</p>
+                                <h3 className="welcomeTitle">Миллионы фильмов, сериалов и людей. Исследуйте сейчас.</h3>
                                 <form>
-                                    <input type="text" placeholder="Найти фильм, сериал, персону....."/>
-                                    <button>Search</button>
+                                    <input type="text" className="mainInput" placeholder="Найти фильм, сериал, персону....."/>
+                                    <button type="submit" className="mainBtn">Search</button>
                                 </form>
                             </div>
                         </div>

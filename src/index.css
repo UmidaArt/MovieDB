@@ -16,7 +16,7 @@ code {
   box-sizing: border-box;
 }
 .container {
-  max-width: 1200px;
+  max-width: 1270px;
   margin: 0 auto;
   padding: 0 15px;
 }
@@ -24,6 +24,12 @@ code {
   display: flex;
   flex-wrap: wrap;
   margin: 0 -15px;
+}
+.col-3 {
+  padding: 0 15px;
+  width: 20%;
+  position: relative;
+  margin: 20px 0 ;
 }
 .col-2 {
   width: 15%;
