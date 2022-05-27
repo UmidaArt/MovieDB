@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Link, useParams} from "react-router-dom";
 import axios from "axios";
 import "./MovieInfo.css"
-import getAverageColor from "get-average-color";
+import FastAverageColor from "fast-average-color";
 
 const MovieInfo = () => {
 
@@ -10,8 +10,15 @@ const MovieInfo = () => {
     const [movie, setMovie] = useState([])
     const [credits, setCredits] = useState([])
     const [people, setPeople] = useState([])
+    const [color, setColor] = useState('')
     const [movieLoader, setMovieLoader] = useState(true)
     const [creditsLoader, setCreditsLoader] = useState(true)
+
+    const onImageLoad = (e) => {
+        new FastAverageColor().getColorAsync(e.target).then((imgColor) => {
+            setColor(`rgba(${imgColor.value.slice(0, 3).join(',')},0.8)`)
+        })
+    }
 
     const getPeople = (people) => {
         let result = []
@@ -38,7 +45,7 @@ const MovieInfo = () => {
                 setPeople(res.data)
                 setCreditsLoader(false)
                 getPeople(res.data.crew)
-                // getAverageColor(test).then(rgb => console.log(rgb))
+                console.log(res.data.crew)
             })
     },[])
 
@@ -47,37 +54,57 @@ const MovieInfo = () => {
     }
 
     return (
-        <div className="infoBlock">
-            <div className="container">
-                <div className='movieInfoBlock'>
-                    <div className="movieInfo">
-                        <div className="filmInfoImg" key={id} >
-                            <img src={`https://www.themoviedb.org/t/p/w440_and_h660_face${movie.poster_path}`} alt="info"
-                                 width="300px"/>
-                        </div>
-                        <div className="infoBox">
-                            <h1 className="nameIngredient">{movie.title}</h1>
-                            <p>{movie.release_date}</p>
-                            <h4 className="filmTitle">{movie.genres[0].name}</h4>
-                            <p>{movie.runtime} min</p>
-                            <p>{movie.tagline}</p>
-                            <h4>Обзор</h4>
-                            <p>{movie.overview}</p>
-                            <div className="row">
-                                {
-                                    people.map((person) => (
-                                        <div className="col-3" key={person.id}>
-                                            <div>
-                                                <p>{person}<br/>Screenplay, Story</p>
-                                            </div>
-                                        </div>
-                                    ))
-                                }
+        <div className="infoBlock"  >
+            <div className="topNav">
+                <ul className="topNavList">
+                    <li>Обзор</li>
+                    <li>Медиа</li>
+                    <li>Фандом</li>
+                    <li>Поделиться</li>
+                </ul>
+            </div>
+                <div className='movieInfoBlock' style={{backgroundImage: `url(/t/p/w1920_and_h800_multi_faces${movie.backdrop_path})`,
+                   backgroundSize: "cover", backgroundPosition: "right top", backgroundRepeat: "no-repeat"}} >
+                    <div className="movieInBlock" style={{backgroundColor: color}}>
+                        <div className="container">
+                            <div className="movieInfo">
+                                <div className="filmInfoImg" key={id} >
+                                    <img src={`/t/p/w440_and_h660_face${movie.poster_path}`}
+                                         alt="info"
+                                         width="300px"
+                                         onLoad={onImageLoad}
+                                         crossOrigin="anonymous"
+                                    />
+                                </div>
+                                <div className="infoBox">
+                                    <h1 className="movieTitle">{movie.title}</h1>
+                                    <ul className="aboutFilm">
+                                        <li>{movie.release_date}</li>
+                                        <li>{movie.genres[0].name}</li>
+                                        <li>{movie.runtime} min</li>
+                                    </ul>
+                                    <p>{movie.tagline}</p>
+                                    <h4 className="review">Обзор</h4>
+                                    <p>{movie.overview}</p>
+                                    <div className="row">
+                                        {
+                                            people.map((person) => (
+                                                <div className="col-3" key={person.id}>
+                                                    <div>
+                                                        <p>{person}<br/>Writer</p>
+                                                    </div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
-                <div className="creditsBlock">
+            <div className="creditsBlock">
+                <div className="container">
                     <h3>В главных ролях</h3>
                     <div className="scroller">
                         {

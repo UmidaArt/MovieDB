@@ -16,7 +16,7 @@ const Trend = () => {
         <div className="trend">
             <div className="trendBlock">
                 <div className="container">
-                    <h1>В тренде</h1>
+                    <h2>В тренде</h2>
                     <div className="scroller">
                         {
                             trendMovies.map((item) => (
@@ -26,7 +26,7 @@ const Trend = () => {
                                             <img src={`https://www.themoviedb.org/t/p/w440_and_h660_face${item.poster_path}`} alt="img" width="150px"/>
                                         </Link>
                                         <div className="consensus">
-                                            23
+                                            23 <span>%</span>
                                         </div>
                                     </div>
                                     <div className="card-content">

@@ -23,7 +23,7 @@ const Popular = () => {
         <div className="popular">
             <div className="popularBlock">
                 <div className="container">
-                    <h1>Что популярно</h1>
+                    <h2>Что популярно</h2>
                     <div className="scroller">
                         {
                             popMovies.map((item) => (
@@ -33,7 +33,7 @@ const Popular = () => {
                                             <img src={`https://www.themoviedb.org/t/p/w440_and_h660_face${item.poster_path}`} alt="img" width="150px"/>
                                         </Link>
                                         <div className="consensus">
-                                            23
+                                            23 <span>%</span>
                                         </div>
                                     </div>
                                     <div className="card-content">

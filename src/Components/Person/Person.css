@@ -1,3 +1,18 @@
+.personPage {
+    margin-top: 40px;
+}
 .person {
     display: flex;
+}
+.personImg img{
+    border-radius: 10px;
+}
+.personInfo {
+    padding: 20px 0 0 30px;
+}
+.personInfo h1 {
+    margin-bottom: 20px;
+}
+.personInfo h4 {
+    margin-bottom: 10px;
 }

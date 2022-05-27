@@ -1,11 +1,36 @@
-.infoBlock {
-    padding-top: 50px;
+.topNav {
+    padding: 20px 0;
+    text-align: center;
+}
+.topNavList li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    cursor: pointer;
+}
+.movieInfoBlock {
+    margin-bottom: 40px;
+}
+.movieInBlock {
+    padding: 40px;
 }
 .movieInfo {
     display: flex;
 }
+.aboutFilm {
+    margin-bottom: 30px;
+}
+.aboutFilm li {
+    list-style: none;
+    display: inline-block;
+    margin-right: 15px;
+}
+.review {
+    margin: 20px 0;
+}
 .infoBox {
     padding: 10px 40px;
+    color: white;
 }
 .card-character {
     color: dimgray;
