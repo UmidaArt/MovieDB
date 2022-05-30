@@ -7,6 +7,7 @@ const Popular = () => {
 
     const [popMovies, setPopMovies] = useState([])
 
+
     useEffect(() => {
         axios('https://api.themoviedb.org/3/movie/popular?api_key=7b0978a92c067b08001617c99e5b9879&language=en-US&page=1')
             .then((res) => setPopMovies(res.data.results))
@@ -23,7 +24,13 @@ const Popular = () => {
         <div className="popular">
             <div className="popularBlock">
                 <div className="container">
-                    <h2>Что популярно</h2>
+                    <div className="selector">
+                        <h2>Что популярно</h2>
+                        <div>
+                            <button className="selectorBtm" >По ТВ</button>
+                            <button className="selectorBtm" >В кинотеатрах</button>
+                        </div>
+                    </div>
                     <div className="scroller">
                         {
                             popMovies.map((item) => (

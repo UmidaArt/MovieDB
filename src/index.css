@@ -47,5 +47,7 @@ a {
 .colItem h4 {
   margin: 20px 0 ;
   color: #282c34;
-
+}
+.selector {
+  display: flex;
 }

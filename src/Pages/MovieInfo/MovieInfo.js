@@ -45,7 +45,6 @@ const MovieInfo = () => {
                 setPeople(res.data)
                 setCreditsLoader(false)
                 getPeople(res.data.crew)
-                console.log(res.data.crew)
             })
     },[])
 
@@ -54,7 +53,7 @@ const MovieInfo = () => {
     }
 
     return (
-        <div className="infoBlock"  >
+        <div className="infoBlock">
             <div className="topNav">
                 <ul className="topNavList">
                     <li>Обзор</li>
@@ -99,7 +98,6 @@ const MovieInfo = () => {
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

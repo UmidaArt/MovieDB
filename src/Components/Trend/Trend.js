@@ -6,17 +6,31 @@ import {Link} from "react-router-dom";
 const Trend = () => {
 
     const [trendMovies, setTrendMovies] = useState([])
+    const [time, setTime] = useState('day')
 
     useEffect(() => {
-        axios('https://api.themoviedb.org/3/trending/all/day?api_key=7b0978a92c067b08001617c99e5b9879')
+        axios(`https://api.themoviedb.org/3/trending/movie/${time}?api_key=7b0978a92c067b08001617c99e5b9879`)
             .then((res) => setTrendMovies(res.data.results))
-    },[])
+    },[time])
+
+    // const formatDate = (date) => {
+    //     const month = ['янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек']
+    //     const reversedDate = date.split('-').reverse()
+    //     reversedDate[1] = month[reversedDate[1] - 1]
+    //     return reversedDate.join(' ')
+    // }
 
     return (
         <div className="trend">
             <div className="trendBlock">
                 <div className="container">
-                    <h2>В тренде</h2>
+                    <div className="selector">
+                        <h2>В тренде</h2>
+                        <div>
+                            <button className="selectorBtm" onClick={() => setTime('day')}>Сегодня</button>
+                            <button className="selectorBtm" onClick={()=> setTime('week')}>На этой неделе</button>
+                        </div>
+                    </div>
                     <div className="scroller">
                         {
                             trendMovies.map((item) => (
@@ -33,7 +47,7 @@ const Trend = () => {
                                         <Link to={`/movie/${item.id}`}>
                                             <h5 className="card-title">{item.original_title}</h5>
                                         </Link>
-                                        {/*<span className="card-year">{formatDate(item.release_date)}</span>*/}
+                                        {/*<span className="card-year">{formatDate(item.first_air_date)}</span>*/}
                                     </div>
                                 </div>
                             ))
