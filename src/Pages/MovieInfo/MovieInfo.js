@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Link, useParams} from "react-router-dom";
 import axios from "axios";
 import "./MovieInfo.css"
-import FastAverageColor from "fast-average-color";
+import {IMAGES_BASE_URL, SERVER_API} from "../../Constants/Constants";
 
 const MovieInfo = () => {
 
@@ -10,15 +10,8 @@ const MovieInfo = () => {
     const [movie, setMovie] = useState([])
     const [credits, setCredits] = useState([])
     const [people, setPeople] = useState([])
-    const [color, setColor] = useState('')
     const [movieLoader, setMovieLoader] = useState(true)
     const [creditsLoader, setCreditsLoader] = useState(true)
-
-    const onImageLoad = (e) => {
-        new FastAverageColor().getColorAsync(e.target).then((imgColor) => {
-            setColor(`rgba(${imgColor.value.slice(0, 3).join(',')},0.8)`)
-        })
-    }
 
     const getPeople = (people) => {
         let result = []
@@ -34,19 +27,19 @@ const MovieInfo = () => {
     }
 
     useEffect(() => {
-        axios(`https://api.themoviedb.org/3/movie/${id}?language=ru&api_key=7b0978a92c067b08001617c99e5b9879`)
+        axios(`${SERVER_API}/movie/${id}?language=ru&api_key=7b0978a92c067b08001617c99e5b9879`)
             .then((res) => {
                 setMovie(res.data)
                 setMovieLoader(false)
             })
-        axios(`https://api.themoviedb.org/3/movie/${id}/credits?language=ru&api_key=6f19f87e3380315b9573c4270bfc863c`)
+        axios(`${SERVER_API}/movie/${id}/credits?language=ru&api_key=6f19f87e3380315b9573c4270bfc863c`)
             .then((res) => {
                 setCredits(res.data.cast)
                 setPeople(res.data)
                 setCreditsLoader(false)
                 getPeople(res.data.crew)
             })
-    },[])
+    },[id])
 
     if (movieLoader || creditsLoader) {
         return 'Loading.....'
@@ -64,15 +57,13 @@ const MovieInfo = () => {
             </div>
                 <div className='movieInfoBlock' style={{backgroundImage: `url(/t/p/w1920_and_h800_multi_faces${movie.backdrop_path})`,
                    backgroundSize: "cover", backgroundPosition: "right top", backgroundRepeat: "no-repeat"}} >
-                    <div className="movieInBlock" style={{backgroundColor: color}}>
+                    <div className="movieInBlock" style={{backgroundColor: 'rgba(0,0,0,0.6)'}}>
                         <div className="container">
                             <div className="movieInfo">
                                 <div className="filmInfoImg" key={id} >
-                                    <img src={`/t/p/w440_and_h660_face${movie.poster_path}`}
+                                    <img src={`${IMAGES_BASE_URL}/w440_and_h660_face${movie.poster_path}`}
                                          alt="info"
                                          width="300px"
-                                         onLoad={onImageLoad}
-                                         crossOrigin="anonymous"
                                     />
                                 </div>
                                 <div className="infoBox">
@@ -110,7 +101,7 @@ const MovieInfo = () => {
                                 <div className="movie-card" key={credit.id}>
                                     <div className="cardImg">
                                         <Link to={`/person/${credit.id}`}>
-                                            <img src={`https://www.themoviedb.org/t/p/w276_and_h350_face/${credit.profile_path}`}
+                                            <img src={`${IMAGES_BASE_URL}/w276_and_h350_face/${credit.profile_path}`}
                                                  alt="img" width="50px"
                                             />
                                         </Link>

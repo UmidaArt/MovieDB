@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import "./Person.css"
 import axios from "axios";
 import {useParams} from "react-router-dom";
+import {IMAGES_BASE_URL, SERVER_API} from "../../Constants/Constants";
 
 const Person = () => {
 
@@ -9,12 +10,11 @@ const Person = () => {
     const [person, setPerson] = useState([])
 
     useEffect(() => {
-        axios(`https://api.themoviedb.org/3/person/${id}?api_key=7b0978a92c067b08001617c99e5b9879&language=ru`)
+        axios(`${SERVER_API}/person/${id}?api_key=7b0978a92c067b08001617c99e5b9879&language=ru`)
             .then((res) => {
                 setPerson(res.data)
-
             })
-    },[])
+    },[id])
 
     return (
         <>
@@ -30,7 +30,8 @@ const Person = () => {
                 <div className="container">
                     <div className="person">
                         <div className="personImg">
-                            <img src={`https://www.themoviedb.org/t/p/w276_and_h350_face/${person.profile_path}`}/>
+                            <img src={`${IMAGES_BASE_URL}/w276_and_h350_face/${person.profile_path}`}
+                                 alt="person"/>
                         </div>
                         <div className="personInfo">
                             <h1>{person.name}</h1>

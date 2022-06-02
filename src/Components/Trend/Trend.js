@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import "./Trend.css"
 import axios from "axios";
 import {Link} from "react-router-dom";
+import {IMAGES_BASE_URL, SERVER_API} from "../../Constants/Constants";
 
 const Trend = () => {
 
@@ -9,7 +10,7 @@ const Trend = () => {
     const [time, setTime] = useState('day')
 
     useEffect(() => {
-        axios(`https://api.themoviedb.org/3/trending/movie/${time}?api_key=7b0978a92c067b08001617c99e5b9879`)
+        axios(`${SERVER_API}/trending/movie/${time}?api_key=7b0978a92c067b08001617c99e5b9879`)
             .then((res) => setTrendMovies(res.data.results))
     },[time])
 
@@ -37,11 +38,9 @@ const Trend = () => {
                                 <div className="movie-card" key={item.id}>
                                     <div className="card-img">
                                         <Link to={`/movie/${item.id}`}>
-                                            <img src={`https://www.themoviedb.org/t/p/w440_and_h660_face${item.poster_path}`} alt="img" width="150px"/>
+                                            <img src={`${IMAGES_BASE_URL}/w440_and_h660_face${item.poster_path}`} alt="img" width="150px"/>
                                         </Link>
-                                        <div className="consensus">
-                                            23 <span>%</span>
-                                        </div>
+                                        <div className="consensus">{item.vote_average * 10}<span>%</span></div>
                                     </div>
                                     <div className="card-content">
                                         <Link to={`/movie/${item.id}`}>

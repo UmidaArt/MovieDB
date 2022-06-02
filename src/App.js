@@ -8,11 +8,7 @@ import Person from "./Components/Person";
 function App() {
   return (
     <BrowserRouter>
-        <div className="header">
-            <div className="container">
-                <Header/>
-            </div>
-        </div>
+        <Header/>
         <Routes>
             <Route path="/" element={<HomePage/>}/>
             <Route path="/movie/:id" element={<MovieInfo/>}/>
